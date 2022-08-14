@@ -6,13 +6,14 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 
 // mongoDB接続
-mongoose.connect(
-    process.env.MONGOURL
-).then(() => {
+mongoose
+  .connect(process.env.MONGOURL)
+  .then(() => {
     console.log("DBと接続中...");
-}).catch((err) => {
+  })
+  .catch((err) => {
     console.log(err);
-});
+  });
 
 // ルーティング設定
 const userRouter = require("./routes/users");
@@ -26,9 +27,9 @@ app.use("/api/auth", authRouter);
 app.use("/api/posts", postsRouter);
 
 app.get("/", (req, res) => {
-    res.send("hello express. ")
+  res.send("hello express. ");
 });
 
 app.listen(PORT, () => {
-    console.log("サーバーが起動しました。");
+  console.log("サーバーが起動しました。");
 });
